@@ -1,6 +1,6 @@
 #include "Time.h"
 
-// функція переведення часу у 12-годинний формат
+// функція переведення часу у 12-годинний формат 
 void Time :: twelveHrsFormat(int *newHrs, std::string *period)
 {
     if (hrs >= 12)
