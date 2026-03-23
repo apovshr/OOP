@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-    // задаємо змінні
+    // задаємо змінні 
     int hrs, min, newHrs;
     string period;
 
