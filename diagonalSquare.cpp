@@ -1,3 +1,5 @@
+//лабораторна 3
+
 #include "SquareDiagonal.h"
 #include <cmath>
 
