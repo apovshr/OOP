@@ -3,7 +3,7 @@
 
 using namespace std; // щоб завжди не писати std:: перед cout, cin 
 
-void area(int a, int h, double *res) // функція для площі довільного трикутника
+void area(int a, int h, double *res) // функція для площі довільного трикутника 
 {
     *res = 0.5 * a * h;
 }
