@@ -1,4 +1,4 @@
-class LinearEquation 
+class LinearEquation
 {
     // робимо публічними функції для встановлення змінних, перевірки та розв'язку
     public:
