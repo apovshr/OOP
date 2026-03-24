@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-    srand(time(NULL)); // для випадкових чисел пізніше у коді
+    srand(time(NULL)); // для випадкових чисел пізніше у коді 
 
     // створюємо змінні та просимо надати ромзір масиву
     int n, min, max, x, choice;
