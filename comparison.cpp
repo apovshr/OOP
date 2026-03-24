@@ -1,6 +1,6 @@
 #include "MyArray.h"
 
-// метод порівняння елементів масиву з х
+// метод порівняння елементів масиву з х 
 int MyArray :: comparison(int x) 
 {
     int count = 0;
