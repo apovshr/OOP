@@ -1,7 +1,7 @@
 #include "MyArray.h"
 #include <iostream>
 
-// метод виводу масивів
+// метод виводу масивів 
 void MyArray :: print()
 {
     for(int i = 0; i < size; i++)
