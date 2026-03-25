@@ -1,6 +1,6 @@
 #include "SquareDiagonal.h"
 
-// метод рахунку суми діагоналей
+// метод рахунку суми діагоналей 
 double SquareDiagonal :: sumOfDiagonals()
 {
     sum = d * 2;
