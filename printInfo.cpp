@@ -3,7 +3,7 @@
 
 using namespace std;
 
-// метод виведення інформації про квадрат на екран
+// метод виведення інформації про квадрат на екран 
 void SquareDiagonal :: printInfo(int num)
 {
     cout << "Інформація про " << num << " квадрат: " << endl;
