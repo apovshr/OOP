@@ -1,5 +1,3 @@
-//лабораторна 3
-
 // клас діагоналі квадрата
 class SquareDiagonal 
 {
@@ -7,5 +5,10 @@ class SquareDiagonal
     public:
         void setA(double a) {this -> a = a;}
         double diagonalSquare();
-    private: double a, d;
+        SquareDiagonal(){a = 2;}; // стандартний конструктор, де сторона = 2
+        SquareDiagonal(int min, int max); // додатковий конструктор
+        void printInfo(int num); // метод виведення інформації на екран
+        double sumOfDiagonals(); // метод рахунку суми діагоналей
+    private: 
+        double a, d, sum;
 };

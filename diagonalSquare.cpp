@@ -1,5 +1,3 @@
-//лабораторна 3
-
 #include "SquareDiagonal.h"
 #include <cmath>
 
@@ -9,4 +7,3 @@ double SquareDiagonal :: diagonalSquare ()
     d = a * sqrt(2);
     return d;
 }
-
