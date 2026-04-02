@@ -3,7 +3,7 @@
 
 using namespace std;
 
-// функція вираховування, яка точка найближча до початку координат
+// функція вираховування, яка точка найближча до початку координат 
 void closestPoint(const Point& obj1, const Point& obj2)
 {
     cout << endl << endl;
