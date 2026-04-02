@@ -1,96 +1,75 @@
-#include "SquareDiagonal.h"
+#include "Circle.h"
+#include "Ellipse.h"
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
 
-using namespace std; 
+using namespace std;
 
-// основна функція
+// метод для зібрання значень змінних
+void getInfo(double &variable, string name)
+{
+    cout << "\nВведіть значення " << name << ": ";
+
+    while(!(cin >> variable))
+    {
+        cout << "Помилка при введені " << name << ", спробуйте ще раз!" << endl;
+        cin.clear();
+        cin.ignore(1000,'\n');
+        cout << "Введіть значення " << name << ": ";
+    }
+
+}
+
 int main() 
 {
-    srand(time(0)); // для генерації завжди різних випадкових значень
-
-    // оголошуємо змінні 
-    double a, total = 0; 
-    int min, max;
+    // створюємо змінні
     int choice;
+    string name;
+    double a = 1.0, b = 1.0, r = 1.0; // початкові значення
 
-    // створюємо масив з трьох квадратів (покажчики)
-    SquareDiagonal* new_square[3];
+    // питаємо чи користувач хоче рахувати по початковим значенням чи своїм
+    cout << "З якими данними ви хочете рахувати Еліпс?" << endl;
+    cout << "1 - За замовчуванням (a = b = 1)\n2 - Ввести свої координати" << endl;
+    cout << "Оберіть 1 чи 2 варіант: ";
 
-    // перший квадрат
-    cout << "Перший квадрат:\n\n";
-    new_square[0] = new SquareDiagonal();
-    new_square[0]->diagonalSquare(); // обислення діагоналі
-    new_square[0]->sumOfDiagonals(); // обчислнення суми діагоналей
-    new_square[0]->printInfo(1); // вивід усієї інформації про об'єкт
-
-    // другий квадрат
-    cout << "\nДругий квадрат:\n";
-    cout << "Введіть значення сторони квадрату: ";
-
-    // перевірка на те, чи користувач ввів число
-    while (!(cin >> a))
+    // перевірка чи правильно вказали варіант дії 
+    while(!(cin >> choice) || choice > 2 || choice < 1)
     {
-        cout << "\nПомилка!\n";
+        cout << "Помилка при введені варіанту дії, спробуйте ще раз!" << endl;
         cin.clear();
-        cin.ignore(1000, '\n');
-        cout << "Введіть значення сторони квадрату: ";
+        cin.ignore(1000,'\n');
+        cout << "Оберіть 1 чи 2 варіант: ";
     }
 
-    cout << endl; 
+    // якщо обрали другий варіант, просимо вказати значення змінних, інакше, працюємо з початковими
+    if (choice == 2)
+    { 
+        getInfo(a, "a");
+        getInfo(b, "b");
+        
+    }
 
-    // потворення дій минулого квадрату, але вже з зазначеною стороною від користувача
-    new_square[1] = new SquareDiagonal();
-    new_square[1]->setA(a);
-    new_square[1]->diagonalSquare();
-    new_square[1]->sumOfDiagonals();
-    new_square[1]->printInfo(2);
+    // створюємо об'єкт еліпсу
+    Ellipse obj1(a, b);    
 
+    // повторюємо ті ж дії з колом
+    cout << "\n\nЗ якими данними ви хочете рахувати Коло?" << endl;
+    cout << "1 - За замовчуванням (r = 1)\n2 - Ввести свої координати" << endl;
+    cout << "Оберіть 1 чи 2 варіант: ";
 
-    // третій квадрат
-    cout << "Третій квадрат:\n";    
-    cout << "Введіть мінімальне значення (більше 0): ";
-            
-    // перевірка на те, чи користувач ввів число у діапазоні допустимих значень
-    while (!(cin >> min) || min <= 0)
+    while(!(cin >> choice) || choice > 2 || choice < 1)
     {
-        cout << "\nПомилка!\n";
+        cout << "Помилка при введені варіанту дії, спробуйте ще раз!" << endl;
         cin.clear();
-        cin.ignore(1000, '\n');
-        cout << "Введіть мінімальне значення (більше 0): ";
+        cin.ignore(1000,'\n');
+        cout << "Оберіть 1 чи 2 варіант: ";
     }
 
-    cout << "Введіть максимальне значення (більше min): ";
-
-    // перевірка на те, чи користувач ввів число у діапазоні допустимих значень
-    while (!(cin >> max) || max <= min)
+    if (choice == 2)
     {
-        cout << "\nПомилка!\n";
-        cin.clear();
-        cin.ignore(1000, '\n');
-        cout << "Введіть максимальне значення (більше min): ";
+        getInfo(r, "r");
+        
     }
 
-    cout << endl;
-
-    // повторення дій минулих варіантів дій, але об'єкт створився додатковим конструктором
-    new_square[2] = new SquareDiagonal(min, max);
-    new_square[2]->diagonalSquare();
-    new_square[2]->sumOfDiagonals();
-    new_square[2]->printInfo(3);
-
-    // загальна сума всіх діагонелей квадратів
-    for (int i = 0; i < 3; i++)
-    {
-        total += new_square[i]->sumOfDiagonals();
-    }
-
-    cout << "Загальна сума діагоналей усіх квадртаів = " << total;
-
-    // видалення пам'яті 
-    for (int i = 0; i < 3; i++)
-    {
-        delete new_square[i];
-    }
+    Circle obj2(r);
+    obj1.calculateDifference(obj2); // функція для порівнняня довжин
 }

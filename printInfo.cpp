@@ -1,13 +1,12 @@
-#include "SquareDiagonal.h"
+#include "Ellipse.h"
 #include <iostream>
 
 using namespace std;
 
-// метод виведення інформації про квадрат на екран 
-void SquareDiagonal :: printInfo(int num)
+// метод виведення усієї інформації
+void Ellipse :: printInfo(double lengthCircle, double lengthEllipse, double ratio)
 {
-    cout << "Інформація про " << num << " квадрат: " << endl;
-    cout << "Сторона квадрату = " << a << endl;
-    cout << "Діагоналі = " << d << endl;
-    cout << "Сума діагоналей = " << sum << endl << endl;
+    cout << "\n\nДовжина кола = " << lengthCircle << endl;
+    cout << "Довжина еліпса = " << lengthEllipse << endl;
+    cout << "Довжина еліпса більше довжини кола у " << ratio << " раз/ів" << endl;
 }
