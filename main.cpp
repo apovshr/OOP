@@ -1,75 +1,87 @@
-#include "Circle.h"
-#include "Ellipse.h"
+#include "Point.h"
 #include <iostream>
 
 using namespace std;
 
-// метод для зібрання значень змінних 
-void getInfo(double &variable, string name)
+// функція вираховування, яка точка найближча до початку координат
+void closestPoint(const Point& obj1, const Point& obj2)
 {
-    cout << "\nВведіть значення " << name << ": ";
-
-    while(!(cin >> variable))
+    cout << endl << endl;
+    if (obj1.dis < obj2.dis)
     {
-        cout << "Помилка при введені " << name << ", спробуйте ще раз!" << endl;
-        cin.clear();
-        cin.ignore(1000,'\n');
-        cout << "Введіть значення " << name << ": ";
+        cout << "Найближча точка до початку координат = ("<< obj1.coordinates[0] << "; " << obj1.coordinates[1] << "; " << obj1.coordinates[2] << ")" << endl;
+        cout << "Дистанція до початку координат = " << obj1.dis;
     }
-
+    else if (obj2.dis < obj1.dis)
+    {
+        cout << "Найближча точка до початку координат = ("<< obj2.coordinates[0] << "; " << obj2.coordinates[1] <<  "; " << obj2.coordinates[2] << ")" << endl;
+        cout << "Дистанція до початку координат = " << obj2.dis;
+    }
+    else
+    {
+        cout << "Обидві точки знаходяться на однаковій відстані від початку координат, їхні значення:" << endl;
+        cout << "Точка 1: " << "("<< obj1.coordinates[0] << "; " << obj1.coordinates[1] << "; " << obj1.coordinates[2] << ")" << endl;
+        cout << "Точка 2: " << "("<< obj2.coordinates[0] << "; " << obj2.coordinates[1] << "; " << obj2.coordinates[2] << ")" << endl;
+        cout << "Дистанція до початку координат = " << obj2.dis;
+    }
 }
 
-int main() 
+int main()
 {
-    // створюємо змінні
+    // створюємо змінні для вибору та координат точок, а також даємо варіанти дій
     int choice;
-    string name;
-    double a = 1.0, b = 1.0, r = 1.0; // початкові значення
+    double x, y, z;
 
-    // питаємо чи користувач хоче рахувати по початковим значенням чи своїм
-    cout << "З якими данними ви хочете рахувати Еліпс?" << endl;
-    cout << "1 - За замовчуванням (a = b = 1)\n2 - Ввести свої координати" << endl;
-    cout << "Оберіть 1 чи 2 варіант: ";
+    cout << "Програма для опису точки у просторі" << endl;
+    cout << "Оберіть дію: " << endl;
+    cout << "1 - Порахувати точки з координатами p1(1; 1; 1) та p2(1; 1; 1)" << endl;
+    cout << "2 - Ввести свої значення точки\nОберіть дію (1-2): ";
 
-    // перевірка чи правильно вказали варіант дії 
-    while(!(cin >> choice) || choice > 2 || choice < 1)
+    // перевірка на правильність вводу варіанту дії
+    while(!(cin >> choice) || choice < 1 || choice > 2)
     {
-        cout << "Помилка при введені варіанту дії, спробуйте ще раз!" << endl;
+        cout << "Помилка при введенні варіанту дії, спробуйте ще раз!";
         cin.clear();
-        cin.ignore(1000,'\n');
-        cout << "Оберіть 1 чи 2 варіант: ";
+        cin.ignore(1000, '\n');
+        cout << "Оберіть дію (1-2): ";
     }
 
-    // якщо обрали другий варіант, просимо вказати значення змінних, інакше, працюємо з початковими
-    if (choice == 2)
-    { 
-        getInfo(a, "a");
-        getInfo(b, "b");
-        
-    }
-
-    // створюємо об'єкт еліпсу
-    Ellipse obj1(a, b);    
-
-    // повторюємо ті ж дії з колом
-    cout << "\n\nЗ якими данними ви хочете рахувати Коло?" << endl;
-    cout << "1 - За замовчуванням (r = 1)\n2 - Ввести свої координати" << endl;
-    cout << "Оберіть 1 чи 2 варіант: ";
-
-    while(!(cin >> choice) || choice > 2 || choice < 1)
+    // switch case для кожного варіанту дії
+    switch (choice)
     {
-        cout << "Помилка при введені варіанту дії, спробуйте ще раз!" << endl;
-        cin.clear();
-        cin.ignore(1000,'\n');
-        cout << "Оберіть 1 чи 2 варіант: ";
-    }
+        case 1: 
+        {
+            Point obj1;
+            Point obj2;
+            closestPoint(obj1, obj2);
+            break;
+        }
 
-    if (choice == 2)
-    {
-        getInfo(r, "r");
-        
-    }
+        case 2:
+        {
+            cout << "Введіть координати для  p1(x y z): ";
+            while (!(cin >> x >> y >> z))
+            {
+                cout << "Помилка з введенням координаті, спробуйте ще раз!" << endl;
+                cin.clear();
+                cin.ignore(1000,'\n');
+                cout << "Введіть координати для  p1(x y z): ";
+            }
 
-    Circle obj2(r);
-    obj1.calculateDifference(obj2); // функція для порівнняня довжин
+            Point obj1(x, y, z);
+
+            cout << "Введіть координати для  p2(x y z): ";
+            while (!(cin >> x >> y >> z))
+            {
+                cout << "Помилка з введенням координаті, спробуйте ще раз!" << endl;
+                cin.clear();
+                cin.ignore(1000,'\n');
+                cout << "Введіть координати для  p2(x y z): ";
+            }
+            Point obj2(x, y, z);
+
+            closestPoint(obj1, obj2);
+            break;
+        }     
+    }
 }
