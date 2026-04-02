@@ -1,7 +1,7 @@
 #include "Ellipse.h"
 #include "Circle.h"
 
-// метод порівняння довжин еліпса та кола
+// метод порівняння довжин еліпса та кола 
 double Ellipse :: calculateDifference(const Circle& circle)
 {
     double lengthEllipse = calculateEllipseLength();
