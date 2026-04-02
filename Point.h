@@ -1,7 +1,7 @@
 // клас точки
 class Point 
 {
-    // зовнішні конструктор і friend метод
+    // зовнішні конструктор і friend метод 
     public:
         Point();
         Point (double x, double y, double z);
