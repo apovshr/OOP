@@ -1,7 +1,7 @@
 #include "Point.h"
 #include <iostream>
 
-// стандартний конструктор
+// стандартний конструктор 
 Point :: Point()
 {
     coordinates[0] = coordinates[1] = coordinates[2] = 1;
