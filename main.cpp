@@ -4,7 +4,7 @@
 
 using namespace std;
 
-// метод для зібрання значень змінних
+// метод для зібрання значень змінних 
 void getInfo(double &variable, string name)
 {
     cout << "\nВведіть значення " << name << ": ";
