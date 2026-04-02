@@ -3,7 +3,7 @@
 
 using namespace std;
 
-// метод виведення усієї інформації
+// метод виведення усієї інформації 
 void Ellipse :: printInfo(double lengthCircle, double lengthEllipse, double ratio)
 {
     cout << "\n\nДовжина кола = " << lengthCircle << endl;
