@@ -2,7 +2,7 @@
 
 class Ellipse 
 {
-    // в зовнішній частині вказуємо додатковий конструктор та метод порівняння довжин еліпса та кола
+    // в зовнішній частині вказуємо додатковий конструктор та метод порівняння довжин еліпса та кола 
     public:
         Ellipse(double a, double b) {this->a = a; this-> b = b;}
         double calculateDifference(const Circle& circle);
