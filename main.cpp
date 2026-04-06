@@ -3,7 +3,7 @@
 
 using namespace std;
 
-// перевизначення оператору виводу <<
+// перевизначення оператору виводу << 
 std::ostream& operator<< (std::ostream &out, const Rectangle &object)
 {
     out << "{(" << object.x1 << ", " << object.y1 << "), (" << object.x2 << ", " << object.y2 << ")}";
