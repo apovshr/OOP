@@ -2,7 +2,7 @@
 
 class Rectangle 
 {
-    // зовнішні методи, дружні функції та конструктори
+    // зовнішні методи, дружні функції та конструктори 
     public: 
         Rectangle () {x1 = y1 = x2 = y2 = 0;};
         Rectangle (int x1, int y1, int x2, int y2);
