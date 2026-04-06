@@ -1,6 +1,6 @@
 #include "Rectangle.h"
 
-// додатковий конструктор з зазначеними сторонами
+// додатковий конструктор з зазначеними сторонами 
 Rectangle:: Rectangle(int x1, int y1, int x2, int y2)
 {
     this-> x1 = x1;
