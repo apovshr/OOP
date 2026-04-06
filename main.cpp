@@ -1,87 +1,102 @@
-#include "Point.h"
 #include <iostream>
+#include "Rectangle.h"
 
 using namespace std;
 
-// функція вираховування, яка точка найближча до початку координат 
-void closestPoint(const Point& obj1, const Point& obj2)
+// перевизначення оператору виводу <<
+std::ostream& operator<< (std::ostream &out, const Rectangle &object)
 {
-    cout << endl << endl;
-    if (obj1.dis < obj2.dis)
+    out << "{(" << object.x1 << ", " << object.y1 << "), (" << object.x2 << ", " << object.y2 << ")}";
+    return out;
+}
+
+// функція перевірки правильності введення значення
+void check (int &number)
+{
+    while (!(cin >> number))
     {
-        cout << "Найближча точка до початку координат = ("<< obj1.coordinates[0] << "; " << obj1.coordinates[1] << "; " << obj1.coordinates[2] << ")" << endl;
-        cout << "Дистанція до початку координат = " << obj1.dis;
-    }
-    else if (obj2.dis < obj1.dis)
-    {
-        cout << "Найближча точка до початку координат = ("<< obj2.coordinates[0] << "; " << obj2.coordinates[1] <<  "; " << obj2.coordinates[2] << ")" << endl;
-        cout << "Дистанція до початку координат = " << obj2.dis;
-    }
-    else
-    {
-        cout << "Обидві точки знаходяться на однаковій відстані від початку координат, їхні значення:" << endl;
-        cout << "Точка 1: " << "("<< obj1.coordinates[0] << "; " << obj1.coordinates[1] << "; " << obj1.coordinates[2] << ")" << endl;
-        cout << "Точка 2: " << "("<< obj2.coordinates[0] << "; " << obj2.coordinates[1] << "; " << obj2.coordinates[2] << ")" << endl;
-        cout << "Дистанція до початку координат = " << obj2.dis;
+        cout << "\nПомилка у введенні значення, спробуйте ще раз!";
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "\nВведіть значення: ";
     }
 }
 
 int main()
 {
-    // створюємо змінні для вибору та координат точок, а також даємо варіанти дій
-    int choice;
-    double x, y, z;
+    // питаємо яким способом зробити прямокутник та робимо перевірку на правильність введенного варіант дії
+    int choice, hor, vert, x1, x2, y1, y2, width, height;
+    cout << "Оберіть метод створення прямокутника: \n1 - Стандартний (x1 = y1 = x2 = y2 = 0)";
+    cout << "\n2 - Ввести свої значення кутів\n3 - Ввести довжину та ширину\nОберіть дію (1-3): ";
 
-    cout << "Програма для опису точки у просторі" << endl;
-    cout << "Оберіть дію: " << endl;
-    cout << "1 - Порахувати точки з координатами p1(1; 1; 1) та p2(1; 1; 1)" << endl;
-    cout << "2 - Ввести свої значення точки\nОберіть дію (1-2): ";
-
-    // перевірка на правильність вводу варіанту дії
-    while(!(cin >> choice) || choice < 1 || choice > 2)
+    while (!(cin >> choice) || choice > 3 || choice < 1)
     {
-        cout << "Помилка при введенні варіанту дії, спробуйте ще раз!";
+        cout << "\nПомилка у введенні варіанту дії, спробуйте ще раз!";
         cin.clear();
         cin.ignore(1000, '\n');
-        cout << "Оберіть дію (1-2): ";
+        cout << "Оберіть дію (1-3):";
     }
 
-    // switch case для кожного варіанту дії
     switch (choice)
     {
-        case 1: 
+        // прямокутник, створений стандартним конструктором + його методи
+        case 1:
         {
-            Point obj1;
-            Point obj2;
-            closestPoint(obj1, obj2);
+            Rectangle obj1;
+            cout << "Початкові координати: " << obj1 << endl;
+            cout << "Введіть на скільки перемістили горизантально: ";
+            check(hor);
+            cout << "Введіть на скільки перемістили вертикально: ";
+            check(vert);
+            obj1.moveRectangle(hor, vert);
+            cout << "\nКоординати переміщеного прямокутника: " << obj1;
+            obj1.mirrorRectangle();
+            cout << "\nКоординати дзеркально відображеного прямокутника: " << obj1;
             break;
         }
 
+        // прямокутник, створений додатковим конструктором, який питає сторони + його методи
         case 2:
         {
-            cout << "Введіть координати для  p1(x y z): ";
-            while (!(cin >> x >> y >> z))
-            {
-                cout << "Помилка з введенням координаті, спробуйте ще раз!" << endl;
-                cin.clear();
-                cin.ignore(1000,'\n');
-                cout << "Введіть координати для  p1(x y z): ";
-            }
-
-            Point obj1(x, y, z);
-
-            cout << "Введіть координати для  p2(x y z): ";
-            while (!(cin >> x >> y >> z))
-            {
-                cout << "Помилка з введенням координаті, спробуйте ще раз!" << endl;
-                cin.clear();
-                cin.ignore(1000,'\n');
-                cout << "Введіть координати для  p2(x y z): ";
-            }
-            Point obj2(x, y, z);
-
-            closestPoint(obj1, obj2);
+            cout << "Введіть x1: ";
+            check(x1);
+            cout << "Введіть y1: ";
+            check(y1);
+            cout << "Введіть x2: ";
+            check(x2);
+            cout << "Введіть y2: ";
+            check(y2);
+            Rectangle obj1 (x1, y1, x2, y2);
+            cout << "Початкові координати: " << obj1 << endl;
+            cout << "Введіть на скільки перемістили горизантально: ";
+            check(hor);
+            cout << "Введіть на скільки перемістили вертикально: ";
+            check(vert);
+            obj1.moveRectangle(hor, vert);
+            cout << "\nКоординати переміщеного прямокутника: " << obj1;
+            obj1.mirrorRectangle();
+            cout << "\nКоординати дзеркально відображеного прямокутника: " << obj1;
             break;
-        }     
+        }
+
+        case 3:
+        {
+            // прямокутник, створений додатковим конструктором, який питає ширину та довжину + його методи
+            cout << "Введіть ширину: ";
+            check(width);
+            cout << "Введіть довжину: ";
+            check(height);
+            Rectangle obj1(width, height);
+            cout << "Початкові координати: " << obj1 << endl; 
+            cout << "Введіть на скільки перемістили горизантально: ";
+            check(hor);
+            cout << "Введіть на скільки перемістили вертикально: ";
+            check(vert);
+            obj1.moveRectangle(hor, vert);
+            cout << "\nКоординати  переміщеного прямокутника: " << obj1;
+            obj1.mirrorRectangle();
+            cout << "\nКоординати дзеркально відображеного прямокутника: " << obj1;
+            break;
+        }
     }
 }
